@@ -9,8 +9,9 @@ namespace TechnicalTest
 {
     public class RequestDetails
     {
-        public string Endpoint { get; set; }
+        public string ResourceEndpoint { get; set; }
         public Method  MethodType { get; set; }
-        public IList<RequestParameters> MyProperty { get; set; }
+        public IList<RequestParameter> ParameterList { get; set; }
+        
     }
 }

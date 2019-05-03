@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using NUnit.Framework;
+using Framework;
+using RestSharp;
+using System.Collections.Generic;
 
 namespace TechnicalTest
 {
@@ -9,6 +12,7 @@ namespace TechnicalTest
     {
         //IRestClient client;
         //IRestRequest request;
+        private IRestResponse _response;
         [Test]
         public void TestMethod1()
         {
@@ -32,8 +36,37 @@ namespace TechnicalTest
             //}
            
         }
+
+
+        [Test]
+        public void UsersTest()
+        {
+            var api = ApiHelper.GetInstance;
+
+            api.CreateRequest(new RequestDetails()
+            {
+                ResourceEndpoint = Endpoint.Users,
+                MethodType = Method.GET,
+                ParameterList = new List<RequestParameter>()
+                {
+                    new RequestParameter()
+                    {
+                        Key = Headers.ContentType,
+                        Value = "application/json; charset=UTF-8",
+                        ParameterType = ParameterType.HttpHeader;
+                      
+                    }
+                },
+            }
+            
+            
+            
+            
+            );
+
+            _response = api.ExecuteRequest();
+
+        }
         
     }
-
-    
 }

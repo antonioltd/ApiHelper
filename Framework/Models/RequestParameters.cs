@@ -2,10 +2,10 @@
 
 namespace TechnicalTest
 {
-    public class RequestParameters
+    public class RequestParameter
     {
         public string Key { get; set; }
         public string Value { get; set; }
-        public ParameterType type { get; set; }
+        public ParameterType ParameterType { get; set; }
     }
 }
