@@ -1,6 +1,7 @@
 # ApiHelper
 1. Build solution
-	a. Extract file
+
+	a. Clone Me
 	
 	b. Open the folder and locate this path "FairFX\TechnicalTest\Runner\MSBuild\15.0\Bin\amd64"
 	
