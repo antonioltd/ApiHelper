@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,10 +12,10 @@ namespace Framework
 {
     public class ApiHelper
     {
-        private ApiHelper(){}
-        public IRestRequest Request { get; set; }
-        public IRestClient Client { get; set; }
-       
+        private ApiHelper() { }
+        private IRestRequest Request { get; set; }
+        private IRestClient Client { get; set; }
+
         private static ApiHelper instance = null;
         public static ApiHelper GetInstance
         {
@@ -27,22 +28,36 @@ namespace Framework
                 return instance;
             }
         }
-      
+
         public void CreateRequest(RequestDetails requestDetails)
         {
             Request = new RestRequest(requestDetails.ResourceEndpoint, requestDetails.MethodType);
+
+            if (requestDetails.ParameterList != null)
+            {
+                foreach (var parameter in requestDetails.ParameterList)
+                {
+                    Request.AddParameter(parameter.Key, parameter.Value, parameter.ParameterType);
+                }
+            }
+           
         }
 
         public IRestResponse ExecuteRequest()
         {
-            Client = new RestClient(ConfigurationManager.AppSettings["BaseUrl"]);
-            
+            Client = new RestClient(AppSettings.BaseUrl);
+
             return Client.Execute(Request);
         }
 
         public void ClearRequestParameters()
         {
             Request.Parameters.Clear();
+        }
+
+        public T ResponseData<T>(IRestResponse response)
+        {
+            return JsonConvert.DeserializeObject<T>(response.Content);
         }
     }
 }

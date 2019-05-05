@@ -9,7 +9,7 @@ namespace TechnicalTest
         public static string Photos { get { return AppSettings.Photos; } }
         public static string Todos { get { return AppSettings.Todos; } }
         public static string Users { get { return AppSettings.Users; } }
-
+        public static string Posts { get { return AppSettings.Posts; } }
     }
 
 }
