@@ -23,6 +23,7 @@ namespace Framework
 
         public static string Posts = GetValue("Posts");
 
+
         private static string GetValue(string key)
         {
             return ConfigurationManager.AppSettings[key];

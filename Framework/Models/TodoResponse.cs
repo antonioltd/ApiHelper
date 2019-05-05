@@ -1,11 +1,10 @@
-﻿namespace TechnicalTest.ResponseModel
+﻿namespace Framework.Models
 {
-    public class PostResponseModel
+    public class TodoResponse
     {
         public int userId { get; set; }
         public int id { get; set; }
         public string title { get; set; }
-        public string body { get; set; }
+        public bool completed { get; set; }
     }
-
 }

@@ -83,17 +83,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\f1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>f1.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\FeatureSteps.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\f1.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>f1.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\" />
-    <Folder Include="Steps\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj">
       <Project>{D808FCCE-FF7F-441E-865E-54082F2E9631}</Project>

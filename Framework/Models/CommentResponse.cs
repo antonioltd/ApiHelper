@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TechnicalTest.ResponseModel
+﻿namespace Framework.Models
 {
-    public class CommentResponseModel
+    public class CommentResponse
     {
         public int postId { get; set; }
         public int id { get; set; }

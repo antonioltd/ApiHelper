@@ -1,6 +1,6 @@
-﻿namespace TechnicalTest.ResponseModel
+﻿namespace Framework.Models
 {
-    public class PhotoResponseModel
+    public class PhotoResponse
     {
         public int albumId { get; set; }
         public int id { get; set; }

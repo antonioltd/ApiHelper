@@ -6,17 +6,24 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Framework.Models;
 using TechnicalTest;
+using TechnicalTest.ResponseModel;
 
 namespace Framework
 {
     public class ApiHelper
     {
         private ApiHelper() { }
-        private IRestRequest Request { get; set; }
-        private IRestClient Client { get; set; }
+
+        private IRestRequest _request;
+
+        private IRestClient _client;
+
+        private IRestResponse _response;
 
         private static ApiHelper instance = null;
+
         public static ApiHelper GetInstance
         {
             get
@@ -29,35 +36,77 @@ namespace Framework
             }
         }
 
-        public void CreateRequest(RequestDetails requestDetails)
+        private IRestRequest CreateRequest(RequestDetails requestDetails)
         {
-            Request = new RestRequest(requestDetails.ResourceEndpoint, requestDetails.MethodType);
+            _request = new RestRequest(requestDetails.ResourceEndpoint, requestDetails.MethodType);
 
-            if (requestDetails.ParameterList != null)
+            if (requestDetails.ParameterList == null) return _request;
+
+            foreach (var parameter in requestDetails.ParameterList)
             {
-                foreach (var parameter in requestDetails.ParameterList)
-                {
-                    Request.AddParameter(parameter.Key, parameter.Value, parameter.ParameterType);
-                }
+                _request.AddParameter(parameter.Name, parameter.Value, parameter.ParameterType);
             }
-           
+
+            return _request;
+
         }
 
-        public IRestResponse ExecuteRequest()
+        private IRestResponse ExecuteRequest(IRestRequest request)
         {
-            Client = new RestClient(AppSettings.BaseUrl);
+            _client = new RestClient(AppSettings.BaseUrl);
 
-            return Client.Execute(Request);
+            _response = _client.Execute(request);
+
+            request.Parameters.Clear();
+
+            return _response;
+
         }
 
-        public void ClearRequestParameters()
+
+        public IRestResponse GetAllPosts()
         {
-            Request.Parameters.Clear();
+            var request = CreateRequest(new RequestDetails
+            {
+                MethodType = Method.GET,
+                ResourceEndpoint = $"{Endpoint.Posts}"
+
+            });
+
+            return ExecuteRequest(request);
+
+        }
+
+        public IRestResponse GetSpecificPost(string id)
+        {
+            _request = CreateRequest(new RequestDetails
+            {
+                MethodType = Method.GET,
+                ResourceEndpoint = $"{Endpoint.Posts}/{id}"
+
+            });
+
+
+            return ExecuteRequest(_request);
+
+        }
+
+        public IRestResponse GetUserInformation(string id)
+        {
+            _request = CreateRequest(new RequestDetails
+            {
+                MethodType = Method.GET,
+                ResourceEndpoint = $"{Endpoint.Users}/{1}"
+            });
+
+            return ExecuteRequest(_request);
         }
 
         public T ResponseData<T>(IRestResponse response)
         {
             return JsonConvert.DeserializeObject<T>(response.Content);
         }
+
     }
+
 }

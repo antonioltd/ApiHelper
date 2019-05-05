@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Framework;
 using RestSharp;
 using System.Collections.Generic;
+using Framework.Models;
 using TechnicalTest.ResponseModel;
 
 namespace TechnicalTest
@@ -22,7 +23,7 @@ namespace TechnicalTest
             
             //IRestResponse response = client.Execute(request);
 
-            //var obj =JsonConvert.DeserializeObject<IList<UserResponseModel>>(response.Content);
+            //var obj =JsonConvert.DeserializeObject<IList<UserResponse>>(response.Content);
             //var a = obj.Where(x => x.name.Equals("Leanne Graham"));
             //foreach (var s in a)
             //{
@@ -42,18 +43,20 @@ namespace TechnicalTest
         [Test]
         public void UsersTest()
         {
+
             var api = ApiHelper.GetInstance;
 
-            api.CreateRequest(new RequestDetails
-            {
-                ResourceEndpoint = Endpoint.Posts,
-                MethodType = Method.GET               
-            });
+            _response = api.GetUserInformation("1");
 
-            _response = api.ExecuteRequest();
-            Assert.AreEqual(200, (int)_response.StatusCode);
 
-            var data = api.ResponseData<IList<UserResponseModel>>(_response);
+        }
+
+        [Test]
+        public void PostsTest()
+        {
+            var api = ApiHelper.GetInstance;
+
+           _response = api.GetSpecificPost("1");
         }
         
     }

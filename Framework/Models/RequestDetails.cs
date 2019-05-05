@@ -1,11 +1,8 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using RestSharp;
+using TechnicalTest;
 
-namespace TechnicalTest
+namespace Framework.Models
 {
     public class RequestDetails
     {
