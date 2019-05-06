@@ -1,6 +1,6 @@
 ﻿namespace Framework.Models
 {
-    public class PhotoResponse
+    public class Photo
     {
         public int albumId { get; set; }
         public int id { get; set; }

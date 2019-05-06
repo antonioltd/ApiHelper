@@ -8,7 +8,7 @@ namespace Framework.Models
     {
         public string ResourceEndpoint { get; set; }
         public Method  MethodType { get; set; }
-        public IList<RequestParameter> ParameterList { get; set; }
+        public IList<RequestParameter> RequestParameterList { get; set; }
         
     }
 }

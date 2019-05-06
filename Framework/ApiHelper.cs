@@ -10,6 +10,7 @@ using Framework.Models;
 using TechnicalTest;
 using TechnicalTest.ResponseModel;
 
+
 namespace Framework
 {
     public class ApiHelper
@@ -36,18 +37,41 @@ namespace Framework
             }
         }
 
-        private IRestRequest CreateRequest(RequestDetails requestDetails)
+        private IRestRequest CreateRequest(RequestDetails requestDetails, object jsonBody = null)
         {
             _request = new RestRequest(requestDetails.ResourceEndpoint, requestDetails.MethodType);
 
-            if (requestDetails.ParameterList == null) return _request;
+            if (requestDetails.RequestParameterList == null) return _request;
 
-            foreach (var parameter in requestDetails.ParameterList)
+            foreach (var parameter in requestDetails.RequestParameterList)
             {
                 _request.AddParameter(parameter.Name, parameter.Value, parameter.ParameterType);
             }
 
             return _request;
+
+        }
+
+        public IRestResponse WriteAPost(WriteAPostScenarioType sdfg)
+        {
+
+            _request = CreateRequest(new RequestDetails()
+            {
+                ResourceEndpoint = Endpoint.Posts,
+                MethodType = Method.POST,
+                RequestParameterList = new List<RequestParameter>()
+                    {
+                        new RequestParameter()
+                        {
+                            ParameterType = ParameterType.HttpHeader,
+                            Name = "Content-Type",
+                            Value = "application/json"
+                        }                       
+                    }
+            });
+
+            
+
 
         }
 
@@ -66,18 +90,17 @@ namespace Framework
 
         public IRestResponse GetAllPosts()
         {
-            var request = CreateRequest(new RequestDetails
+             _request = CreateRequest(new RequestDetails
             {
                 MethodType = Method.GET,
                 ResourceEndpoint = $"{Endpoint.Posts}"
 
             });
 
-            return ExecuteRequest(request);
-
+            return ExecuteRequest(_request);
         }
 
-        public IRestResponse GetSpecificPost(string id)
+        public IRestResponse GetSpecificPost(int id)
         {
             _request = CreateRequest(new RequestDetails
             {
@@ -86,9 +109,7 @@ namespace Framework
 
             });
 
-
             return ExecuteRequest(_request);
-
         }
 
         public IRestResponse GetUserInformation(string id)
@@ -102,7 +123,7 @@ namespace Framework
             return ExecuteRequest(_request);
         }
 
-        public T ResponseData<T>(IRestResponse response)
+        public T ResponseContent<T>(IRestResponse response)
         {
             return JsonConvert.DeserializeObject<T>(response.Content);
         }

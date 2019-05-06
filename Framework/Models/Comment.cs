@@ -1,6 +1,6 @@
 ﻿namespace Framework.Models
 {
-    public class CommentResponse
+    public class Comment
     {
         public int postId { get; set; }
         public int id { get; set; }

@@ -18,25 +18,7 @@ namespace TechnicalTest
         [Test]
         public void TestMethod1()
         {
-            // client = new RestClient("http://jsonplaceholder.typicode.com");
-            // request = new RestRequest("/users", Method.GET);
-            
-            //IRestResponse response = client.Execute(request);
-
-            //var obj =JsonConvert.DeserializeObject<IList<UserResponse>>(response.Content);
-            //var a = obj.Where(x => x.name.Equals("Leanne Graham"));
-            //foreach (var s in a)
-            //{
-            //    Console.WriteLine(s.id);
-            //    Console.WriteLine(s.name);
-            //    Console.WriteLine(s.username);
-            //    Console.WriteLine(s.address.city);
-            //    Console.WriteLine(s.address.geo.lat);
-            //    Console.WriteLine(s.address.geo.lng);
-
-             Console.WriteLine(ConfigurationManager.AppSettings["BaseUrl"]);
-            //}
-           
+                       
         }
 
 
@@ -56,7 +38,7 @@ namespace TechnicalTest
         {
             var api = ApiHelper.GetInstance;
 
-           _response = api.GetSpecificPost("1");
+           _response = api.GetSpecificPost(1);
         }
         
     }

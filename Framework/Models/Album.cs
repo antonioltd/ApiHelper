@@ -1,11 +1,9 @@
-﻿namespace TechnicalTest.ResponseModel
+﻿namespace Framework.Models
 {
-    public class PostsResponse
+    public class Album
     {
         public int userId { get; set; }
         public int id { get; set; }
         public string title { get; set; }
-        public string body { get; set; }
     }
-
 }

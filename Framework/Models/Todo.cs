@@ -1,6 +1,6 @@
 ﻿namespace Framework.Models
 {
-    public class TodoResponse
+    public class Todo
     {
         public int userId { get; set; }
         public int id { get; set; }
