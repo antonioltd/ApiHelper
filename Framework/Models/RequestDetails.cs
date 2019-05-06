@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using RestSharp;
-using TechnicalTest;
+﻿using RestSharp;
+using System.Collections.Generic;
 
 namespace Framework.Models
 {

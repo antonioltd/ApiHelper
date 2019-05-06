@@ -1,6 +1,4 @@
-﻿using TechnicalTest.ResponseModel;
-
-namespace Framework.Models
+﻿namespace Framework.Models
 {
     public class User
     {

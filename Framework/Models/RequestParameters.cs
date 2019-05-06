@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 
-namespace TechnicalTest
+namespace Framework.Models
 {
     public class RequestParameter
     {

@@ -1,6 +1,4 @@
-﻿using Framework;
-
-namespace TechnicalTest
+﻿namespace Framework
 {
     public  class Endpoint
     {

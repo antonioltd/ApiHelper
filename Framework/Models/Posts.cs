@@ -1,4 +1,4 @@
-﻿namespace TechnicalTest.ResponseModel
+﻿namespace Framework.Models
 {
     public class Posts
     {

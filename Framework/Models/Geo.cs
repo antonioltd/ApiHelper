@@ -1,5 +1,6 @@
-﻿namespace TechnicalTest.ResponseModel
+﻿namespace Framework.Models
 {
+
     public class Geo
     {
         public string lat { get; set; }
